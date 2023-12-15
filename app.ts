@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
+
 const dotenvResult = dotenv.config();
+
 if (dotenvResult.error) {
   throw dotenvResult.error;
 }
@@ -14,6 +16,7 @@ import * as bodyparser from 'body-parser';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
 
+import { AuthRoutes } from './auth/auth.routes.config';
 import { CommonRoutesConfig } from './common/common.routes.config';
 import { UsersRoutes } from './users/users.routes.config';
 
@@ -42,6 +45,7 @@ if (!process.env.DEBUG) {
 app.use(expressWinston.logger(loggerOptions));
 
 routes.push(new UsersRoutes(app));
+routes.push(new AuthRoutes(app));
 
 const runningMessage = `Server running at http:localhost:${port}`;
 

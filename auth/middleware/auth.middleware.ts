@@ -30,3 +30,5 @@ class AuthMiddleware {
     res.status(400).send({ errors: ['Invalid email and/or password'] });
   }
 }
+
+export default new AuthMiddleware();
