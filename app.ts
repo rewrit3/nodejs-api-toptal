@@ -1,8 +1,15 @@
+import dotenv from 'dotenv';
+const dotenvResult = dotenv.config();
+if (dotenvResult.error) {
+  throw dotenvResult.error;
+}
+
 import * as http from 'http';
 
 import express from 'express';
 import cors from 'cors';
 import debug from 'debug';
+
 import * as bodyparser from 'body-parser';
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
