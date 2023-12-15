@@ -55,6 +55,12 @@ class UsersDao {
     return this.User.findOne({ email: email }).exec();
   }
 
+  async getUserByEmailWithPassword(email: string) {
+    return this.User.findOne({ email: email })
+      .select('_id email permissionFlags +password')
+      .exec();
+  }
+
   async updateUserById (
     userId: string,
     userFields: PatchUserDto | PutUserDto
